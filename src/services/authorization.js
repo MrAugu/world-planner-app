@@ -1,7 +1,6 @@
 import { api_base_url } from "../configuration.json";
-import { randomString } from "../utils/Text";
+import { encodeTimestamp } from "../utils/Time";
 import axios from "axios";
-import path from "path";
 
 export const getCache = () => {
   return new Promise((resolve, reject) => {
@@ -27,8 +26,22 @@ export const getCache = () => {
 };
 
 export const getAuthorization = async () => {
-  const randomAgent = randomString(Math.random() * 40 + 15);
-  const payload = await axios.put(path.resolve(api_base_url, "/sessions/new"), {
-    
-  })
+  const encodingTimestamp = Date.now();
+  const stampChecksum = encodeTimestamp(encodingTimestamp);
+  let encodedAgent = navigator.userAgent
+    .split("")
+    .map(char => char.charCodeAt(0))
+    .reverse()
+    .map(code => code + stampChecksum + 13)
+    .map(code => String.fromCharCode(code))
+    .map(char => Buffer.from(char).toString("hex"))
+    .join(":");
+
+  const payload = await axios.put(`${api_base_url}/api/sessions/new`, {
+    stamp: String(encodingTimestamp),
+    test: encodedAgent
+  }).catch(() => {});
+
+  if (!payload || payload.status !== 200) return;
+  else return payload.data;
 };
