@@ -3,11 +3,15 @@ import ReactDOM from "react-dom";
 import "./styles/index.css";
 import Planner from "./Planner";
 import * as serviceWorker from "./serviceWorker";
+import { Provider } from "react-redux";
+import { store } from "./stores/index.store";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Planner />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <Planner />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById("root")
 );
 

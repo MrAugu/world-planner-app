@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { connect } from 'react-redux';
 
 class Planner extends React.Component {
   render () {
@@ -8,4 +9,8 @@ class Planner extends React.Component {
   }
 }
 
-export default Planner;
+const mapStateToProps = () => {
+  return {};
+};
+
+export default Planner = connect(mapStateToProps)(Planner);
