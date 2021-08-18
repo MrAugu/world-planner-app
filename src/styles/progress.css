@@ -1,0 +1,14 @@
+.progress-div {
+    background-color: transparent;
+    padding-top: 2px;
+    padding-left: 3px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+    border: 1px solid #fff;
+}
+
+.progress {
+    background-color: #fff;;
+    height: 7px;
+    transition: 1s ease;
+}

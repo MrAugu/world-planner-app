@@ -10,14 +10,13 @@ const Weather = require("../structures/Weather");
 const defaultState = {
   itemCache: new Collection(),
   weatherCache: new Collection(),
-  token: null, // localStorage.getItem("key") ? Buffer.from(localStorage.getItem("key"), "hex").toString() : null
+  token: null,
   tokenType: null,
   tokenExpires: null,
   tokenId: null
 };
 
 export const reducer = function (state = defaultState, action) {
-  console.log(action.payload);
   switch (action.type) {
     case GET_AUTHORIZATION:
       state.token = action.payload.authorization;

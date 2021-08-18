@@ -1,17 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getAuthorization } from "./actions/authorization";
+import Loader from "./components/Loader";
 
-class Planner extends React.Component {
-  constructor (props) {
+class Planner extends React.Component { 
+  constructor (props) { // eslint-disable-line no-useless-constructor
     super(props);
-    const { dispatch } = this.props;
-    console.log(getAuthorization(dispatch));
   }
 
   render () {
     return (
-      <p>test lol</p>
+      <Loader />
     );
   }
 }
