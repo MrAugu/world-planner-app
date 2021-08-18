@@ -1,3 +1,7 @@
+body {
+
+}
+
 .loader-container {
     background-color: #000;
     position: absolute;
@@ -9,4 +13,8 @@
     right: 0;
     padding: 2em;
     color: #fff;
+}
+
+.loader-content {
+    text-align: center;
 }

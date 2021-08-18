@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Progress from "./Progress";
+import { getAuthorizationFromCache, getAuthorization } from "../actions/authorization";
 
 class Loader extends React.Component {
   constructor (props) { // eslint-disable-line no-useless-constructor
@@ -8,6 +9,9 @@ class Loader extends React.Component {
   }
 
   async componentDidMount () {
+    const { dispatch } = this.props;
+    let tokenData = await getAuthorizationFromCache(dispatch);
+    if (!tokenData) tokenData = await getAuthorization(dispatch);
     
   }
 
@@ -15,8 +19,10 @@ class Loader extends React.Component {
     if (this.props.loaded) return;
     return (
       <section className="loader-container">
-        <p>Testting.</p>
-        <Progress width={500} percent={this.props.load.loadProgress}></Progress>
+        <div className="loader-content">
+          <Progress width={300} percent={this.props.load.loadProgress / 100}></Progress>
+          <p className="progress-text">{ this.props.load.loadMessage }</p>
+        </div>
       </section>
     );
   }

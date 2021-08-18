@@ -6,21 +6,29 @@ const wait = (amount) => {
 
 export const getAuthorizationFromCache = (dispatch) => {
   return AuthorizationService.getCache()
-    .then(payload => dispatch({
-      type: GET_AUTHORIZATION,
-      payload
-    }))
+    .then(payload => {
+      dispatch({
+        type: GET_AUTHORIZATION,
+        payload
+      });
+      return payload;
+    })
     .catch(() => {});
 };
 
 export const getAuthorization = async (dispatch) => {
-  let authorizationData;
-  while (!authorizationData) {
-    await wait(500);
-    authorizationData = await AuthorizationService.getAuthorization();
+  try {
+    let authorizationData;
+    while (!authorizationData) {
+      authorizationData = await AuthorizationService.getAuthorization();
+      await wait(500);
+    }
+    dispatch({
+      type: GET_AUTHORIZATION,
+      payload: authorizationData
+    });
+    return authorizationData;
+  } catch (err) {
+    return;
   }
-  dispatch({
-    type: GET_AUTHORIZATION,
-    payload: authorizationData
-  });
 };
