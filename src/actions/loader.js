@@ -20,6 +20,6 @@ export const toggleLoaded = (dispatch) => {
   });
 };
 
-export const getItemData = (dispatch, updateProgress, totalProgress) => {
+export const getItemData = (dispatch, state, updateProgress, totalProgress) => {
   
 };

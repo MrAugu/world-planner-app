@@ -15,7 +15,7 @@ class Loader extends React.Component {
     let tokenData = await getAuthorizationFromCache(dispatch);
     if (!tokenData) tokenData = await getAuthorization(dispatch);
     updateProgress(dispatch, 5, "Loading item data..");
-    await getItemData(dispatch, updateProgress, 35);
+    await getItemData(dispatch, this.props, updateProgress, 35);
   }
 
   render () {
