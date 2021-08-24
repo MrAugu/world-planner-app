@@ -37,7 +37,7 @@ export const getAuthorization = async () => {
     .map(char => Buffer.from(char).toString("hex"))
     .join(":");
 
-  const payload = await axios.put(`${api_base_url}/api/sessions/new`, {
+  const payload = await axios.put(`${api_base_url}/sessions/new`, {
     stamp: String(encodingTimestamp),
     test: encodedAgent
   }).catch(() => {});

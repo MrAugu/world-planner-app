@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import Progress from "./Progress";
-import { getAuthorizationFromCache, getAuthorization, getItemData } from "../actions/authorization";
-import { updateProgress } from "../actions/loader";
+import { getAuthorizationFromCache, getAuthorization } from "../actions/authorization";
+import { updateProgress, getItemData, getWeatherData } from "../actions/loader";
 
 class Loader extends React.Component {
   constructor (props) { // eslint-disable-line no-useless-constructor
@@ -14,8 +14,9 @@ class Loader extends React.Component {
     updateProgress(dispatch, 0, "Issuing an authorization..");
     let tokenData = await getAuthorizationFromCache(dispatch);
     if (!tokenData) tokenData = await getAuthorization(dispatch);
-    updateProgress(dispatch, 5, "Loading item data..");
-    await getItemData(dispatch, this.props, updateProgress, 35);
+    updateProgress(dispatch, 5, "Loading item metadata..");
+    await getItemData(dispatch, this.props, updateProgress, 40);
+    await getWeatherData(dispatch, this.props, updateProgress, 45);
   }
 
   render () {
@@ -24,7 +25,7 @@ class Loader extends React.Component {
       <section className="loader-container">
         <div className="loader-content">
           <Progress width={250} percent={ this.props.load.loadProgress }></Progress>
-          <p className="progress-text">{ this.props.load.loadMessage }</p>
+          <b><p className="progress-text">{ this.props.load.loadMessage }</p></b>
         </div>
       </section>
     );

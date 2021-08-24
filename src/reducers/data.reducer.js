@@ -4,8 +4,8 @@ import {
   GET_WEATHER_CHUNK,
   GET_ITEM_CHUNK
 } from "../types";
-const Item = require("../structures/Item");
-const Weather = require("../structures/Weather");
+import { Item } from "../structures/Item";
+import { Weather } from "../structures/Weather";
 
 const defaultState = {
   itemCache: new Collection(),

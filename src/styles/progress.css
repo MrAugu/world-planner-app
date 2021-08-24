@@ -1,6 +1,7 @@
 .progress-div {
     background-color: transparent;
     padding: 2px;
+    padding-bottom: 1px;
     border: 1px solid #fff;
 }
 
@@ -8,4 +9,5 @@
     background-color: #fff;;
     height: 7px;
     transition: 1s ease;
+    text-align: center;
 }

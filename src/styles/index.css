@@ -1,5 +1,5 @@
 body {
-
+    font-family: "Century Gothic", sans-serif;
 }
 
 .loader-container {
@@ -13,8 +13,6 @@ body {
     right: 0;
     padding: 2em;
     color: #fff;
+    overflow: hidden;
 }
 
-.loader-content {
-    text-align: center;
-}
